@@ -1,0 +1,68 @@
+﻿<Page x:Class="CenterOfCreativity.Interface.AddEditPages.AddEditManagerPages.AddEdManVisPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CenterOfCreativity.Interface.AddEditPages.AddEditManagerPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEdManVisPage">
+
+    <Grid Height="450" Width="800">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Имя" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" />
+        <TextBlock Text="Фамилия" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="1" />
+        <TextBlock Text="Отчество" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="2" />
+        <TextBlock Text="Дата рождения" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="3" />
+        <TextBlock Text="Группа" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="4" />
+
+        <TextBox Text="{Binding FirstName}" MaxLength="50" Grid.Column="1" Height="30" Margin="5" VerticalContentAlignment="Center" FontSize="15" />
+        <TextBox Text="{Binding LastName}" MaxLength="50" Grid.Column="1" Grid.Row="1" Height="30" Margin="5" VerticalContentAlignment="Center" FontSize="15" />
+        <TextBox Text="{Binding Patronymic}" MaxLength="50" Grid.Column="1" Grid.Row="2" Height="30" Margin="5" VerticalContentAlignment="Center" FontSize="15" />
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+            <TextBox Name="textBoxDateOfBirth" MaxLength="50" Height="30" Margin="5" VerticalContentAlignment="Center" FontSize="15" />
+            <Button Name="btnCalendar" Grid.Column="1" Width="30" Height="30" Click="btnCalendar_Click" />
+        </Grid>
+
+        <Grid Name="gridCalendar" Grid.RowSpan="6" Grid.ColumnSpan="2" Panel.ZIndex="1" Visibility="Collapsed">
+            <Grid  Background="gray" Panel.ZIndex="2" Opacity="0.35" />
+            <Grid Panel.ZIndex="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="350" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="350" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1" Grid.Column="1" Background="White">
+                    <Calendar Name="calDateOfBirth" FirstDayOfWeek="Monday" DisplayDate="01.01.2007" HorizontalAlignment="Center" 
+                              VerticalAlignment="Center" SelectedDatesChanged="calDateOfBirth_SelectedDatesChanged" />
+                    <Button Name="btnCalClose" Content="Закрыть" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btnCalClose_Click" />
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <ComboBox Name="comBoxGroups" SelectedItem="{Binding Groups}" DisplayMemberPath="Name" Width="150" Height="30" Margin="5" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" />
+
+        <Button Name="btnSave" Click="btnSave_Click" Content="Сохранить" Grid.ColumnSpan="2" Grid.Row="6" />
+    </Grid>
+</Page>
